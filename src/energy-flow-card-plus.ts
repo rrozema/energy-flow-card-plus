@@ -855,7 +855,7 @@ export default class EnergyFlowCardPlus extends SubscribeMixin(LitElement) {
     const totalIndividualConsumption = coerceNumber(individual1.state, 0) + coerceNumber(individual2.state, 0);
 
     // Calculate Sum of All Sources to get Total Home Consumption
-    const totalHomeConsumption = Math.max(grid.state.fromGrid + (solar.state.toHome ?? 0) + (battery.state.toHome ?? 0), 0);
+    const totalHomeConsumption = Math.max(((grid.state.fromGrid ?? 0) + (solar.state.total ?? 0) + (battery.state.fromBattery ?? 0)) - ((grid.state.toGrid  ?? 0) + (battery.state.toBattery ?? 0)), 0);
 
     // Calculate Circumference of Semi-Circles
     let homeBatteryCircumference = 0;
